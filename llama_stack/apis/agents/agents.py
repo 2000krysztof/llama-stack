@@ -31,6 +31,7 @@ from llama_stack.apis.tools import ToolDef
 from llama_stack.schema_utils import json_schema_type, register_schema, webmethod
 
 from .openai_responses import (
+    OpenAIResponseDelete,
     OpenAIResponseInputMessage,
     OpenAIResponseInputTool,
     OpenAIResponseObject,
@@ -606,3 +607,12 @@ class Agents(Protocol):
         :param model: The underlying LLM used for completions.
         :param previous_response_id: (Optional) if specified, the new response will be a continuation of the previous response. This can be used to easily fork-off new responses from existing responses.
         """
+
+    @webmethod(route="/openai/v1/response/{id}", method="DELETE")
+    async def delete_openai_response(self, id: str) -> OpenAIResponseDelete:
+        """Delete an OpenAI response by its ID.
+
+        :param id: The ID of the OpenAI response to delete
+        :returns: An OpenAIResponseObject
+        """
+        ...

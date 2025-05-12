@@ -131,3 +131,10 @@ OpenAIResponseInputTool = Annotated[
     Field(discriminator="type"),
 ]
 register_schema(OpenAIResponseInputTool, name="OpenAIResponseInputTool")
+
+
+@json_schema_type
+class OpenAIResponseDelete(BaseModel):
+    id: str
+    deleted: bool
+    object: Literal["response"] = "response"
