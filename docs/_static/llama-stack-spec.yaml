@@ -952,6 +952,35 @@ paths:
           required: true
           schema:
             type: string
+    delete:
+      responses:
+        '200':
+          description: OpenAiResponseDeleteObject
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OpenAiResponseDeleteObject'
+        '400':
+          $ref: '#/components/responses/BadRequest400'
+        '429':
+          $ref: >-
+            #/components/responses/TooManyRequests429
+        '500':
+          $ref: >-
+            #/components/responses/InternalServerError500
+        default:
+          $ref: '#/components/responses/DefaultError'
+      tags:
+        - Agents
+      description: Delete an OpenAI response by its ID.
+      parameters:
+        - name: id
+          in: path
+          description: >-
+            The ID of the OpenAI response to retrieve.
+          required: true
+          schema:
+            type: string
   /v1/scoring-functions/{scoring_fn_id}:
     get:
       responses:
